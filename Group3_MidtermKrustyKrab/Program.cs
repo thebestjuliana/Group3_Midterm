@@ -7,7 +7,10 @@ namespace Group3_MidtermKrustyKrab
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Console.WriteLine("MEssage from Jeffrey");
+
+            Console.WriteLine("Krusty Krab is the Krab");
+
+
         }
     }
 }
