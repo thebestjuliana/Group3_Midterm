@@ -31,6 +31,21 @@ namespace Group3_MidtermKrustyKrab
 
         List<Product> Catalogue = new List<Product>();
 
+        Product a = new Product("Italian Sub", ProductCategory.Sandwich, "Meatballs on a hoagie", 7.00);
 
+
+        public void PrintMenu()
+        {
+            int i = 1;
+            foreach (Product item in Catalogue)
+            {
+                Console.WriteLine($"Product {i}) {ProductName}");
+                Console.WriteLine($"Price: {Price}");
+                Console.WriteLine();
+                i++;
+            }
+        }
+
+        public 
     }
 }
