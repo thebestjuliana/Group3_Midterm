@@ -28,5 +28,9 @@ namespace Group3_MidtermKrustyKrab
             this.Price = Price;
 
         }
+
+        List<Product> Catalogue = new List<Product>();
+
+
     }
 }
