@@ -19,6 +19,8 @@ namespace Group3_MidtermKrustyKrab
         public string Description { get; set; }
         public double Price { get; set; }
 
+        
+
         public Product(string ProductName, ProductCategory FoodType, string Description, double Price)
         {
 
@@ -29,12 +31,14 @@ namespace Group3_MidtermKrustyKrab
 
         }
 
-        List<Product> Catalogue = new List<Product>();
+        //List<Product> Catalogue = new List<Product>();
 
-        Product a = new Product("Italian Sub", ProductCategory.Sandwich, "Meatballs on a hoagie", 7.00);
+        //Product a = new Product("Italian Sub", ProductCategory.Sandwich, "Meatballs on a hoagie", 7.00);
+
+        
 
 
-        public void PrintMenu()
+        public void PrintFoodMenu()
         {
             int i = 1;
             foreach (Product item in Catalogue)
