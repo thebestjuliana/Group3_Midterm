@@ -6,33 +6,39 @@ namespace Group3_MidtermKrustyKrab
 {
     class Basket
     {
-        public List<Product> MyBasket { get; set; }
 
+        double salesTax = .06;
+        public Product Item { get; set; }
+        public string ProductName { get; set; }
+        public int Quantity { get; set; }
        
         public Basket ()
         {
            MyBasket = new List<Product>();
         }
 
-        public void DisplayBasket()
+        public void UpdateQuantity(int num)
         {
-            double subtotal = 0;
-            foreach (Product item in MyBasket)
-            {
-                
-                subtotal += item.PrintTotalForItem();
-
-            }
-            Console.WriteLine($"Subtotal: {subtotal}");
-            double tax = subtotal * 0.06;
-            Console.WriteLine($"Tax: {tax}");
-            Console.WriteLine($"Total: {subtotal+tax}");
-
+            Quantity = num;
+        }
+        public double TotalItem()
+        {
+            return Quantity * Item.Price * (1 + salesTax);
+        }
+        public string TotalFormatedItem()
+        {
+            return FormatNumber(TotalItem());
         }
 
-        public void RemoveItem()
+        private string FormatNumber(double x)
         {
+            return x.ToString("C2");
+        }
 
+        public override string ToString()
+        {
+            string output = $"{ProductName,-20}{Quantity,-5}{TotalFormatedItem(),-5}";
+            return output;
         }
 
         public void AddItem(Product selectedProduct)
