@@ -6,15 +6,15 @@ namespace Group3_MidtermKrustyKrab
 {
     class Basket
     {
+
         double salesTax = .06;
         public Product Item { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
-
-        public Basket (Product Item, int Quantity)
+       
+        public Basket ()
         {
-            this.Item = Item;
-            this.Quantity = Quantity;
+           MyBasket = new List<Product>();
         }
 
         public void UpdateQuantity(int num)
@@ -39,6 +39,14 @@ namespace Group3_MidtermKrustyKrab
         {
             string output = $"{ProductName,-20}{Quantity,-5}{TotalFormatedItem(),-5}";
             return output;
+        }
+
+        public void AddItem(Product selectedProduct)
+        {
+            Console.WriteLine("Would you like to add this product to your bag?");
+            Console.WriteLine("How Many?");
+            int i = int.Parse(Console.ReadLine());
+            MyBasket.Add(new Product(selectedProduct.ProductName, selectedProduct.FoodType, selectedProduct.Description, selectedProduct.Price, i));
         }
 
     }
