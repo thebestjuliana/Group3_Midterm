@@ -58,7 +58,7 @@ namespace Group3_MidtermKrustyKrab
                 index = index - 1;
                 if (select)
                 {
-                    if (index >= Catalogue.Count || index < 0)
+                    if (index >= Catalogue.Count || index <= 0)
                     {
                         Console.WriteLine("Invalid Selection");
                         continue;
