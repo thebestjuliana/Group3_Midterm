@@ -45,12 +45,13 @@ namespace Group3_MidtermKrustyKrab
                 index = index - 1;
                 if (select)
                 {
+
                     if (index >= MyBasket.Count || index <= 0)
                     {
                         Console.WriteLine("Invalid Selection");
                         continue;
                     }
-                    for (int i = index; i < MyBasket.Count; i++)
+                    else
                     {
                         MyBasket[index].PrintItemDetails();
                         return index;
@@ -81,7 +82,31 @@ namespace Group3_MidtermKrustyKrab
         //    return FormatNumber(TotalItem());
         //}
 
-        private string FormatNumber(double x)
+        public double Reciept()
+        {
+            int i = 1;
+            double tax = 1.06;
+            double runningTotal = 0;
+            foreach (Product item in MyBasket)
+            {
+                Console.WriteLine($"{i} {item.ProductName}");
+                Console.WriteLine($"Quantity:{item.Quantity}");
+                double itemSubTotal = item.Quantity * item.Price;
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine($"Subtotal: {FormatNumber(itemSubTotal)}");
+                runningTotal =+ itemSubTotal;
+                i++;
+            }
+            double taxReturn = runningTotal * 0.06;
+            double grandTotal = runningTotal * tax;
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine($"Tax: {FormatNumber(taxReturn)}");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine($"Grand Total: {FormatNumber(grandTotal)}");
+            return grandTotal;
+        }
+
+        public string FormatNumber(double x)
         {
             return x.ToString("C2");
         }

@@ -43,7 +43,7 @@ namespace Group3_MidtermKrustyKrab
                     Console.WriteLine("How many would you like?(Please, No more than 50 of any item)");
                     quant = ValidCheck(Console.ReadLine(), 1, 50);
 
-                    b.AddItem(a.Catalogue[comboNumber], quant);
+                    b.AddItem(a.Catalogue[comboNumber-1], quant);
                 }
 
                 int selectedOption = PrintMenu2ReturnUserSelection();
@@ -59,7 +59,7 @@ namespace Group3_MidtermKrustyKrab
                         Console.WriteLine("How many would you like?(Please, No more than 50 of any item)");
                         quant = ValidCheck(Console.ReadLine(), 1, 50);
 
-                        b.AddItem(a.Catalogue[comboNumber], quant);
+                        b.AddItem(a.Catalogue[comboNumber-1], quant);
 
                         break;
                     case 2:
@@ -75,8 +75,44 @@ namespace Group3_MidtermKrustyKrab
                         //Change quantity
                         break;
                     case 6:
-                        //Checkout
-                        break;
+                        while (true)
+                        {
+                            Payment paymentMethod = new Payment();
+                            PaymentType type = paymentMethod.WhichType();
+
+                            if (type == PaymentType.Cash)
+                            {
+                                double grandTotal = b.Reciept();
+                                double change = paymentMethod.CashCheckOut(grandTotal);
+                                double doNotReturn = b.Reciept();
+                                Console.WriteLine("You paid in cash!");
+                                Console.WriteLine($"Amount Tendered: {b.FormatNumber(grandTotal + change)}");
+                                Console.WriteLine($"Change: ({b.FormatNumber(change)})");
+                                Console.WriteLine($"Thank you for your payment! Have a great Day!");
+                                running = false;
+                            }
+                            else if (type == PaymentType.Check)
+                            {
+                                int checkNum = paymentMethod.CheckCheckOut();
+                                double doNotReturn = b.Reciept();
+                                Console.WriteLine($"You paid with a check and a check number of {checkNum}!");
+                                Console.WriteLine($"Thank you for your payment! Have a great Day!");
+                                running = false;
+                            }
+                            else
+                            {
+                                double doNotReturn = b.Reciept();
+                                string cc = paymentMethod.CreditCheckOut();
+                                if (cc == "fail")
+                                {
+                                    continue;
+                                }
+                                Console.WriteLine($"You paid with a credit card ending in {cc}!");
+                                Console.WriteLine($"Thank you for your payment! Have a great Day!");
+                                running = false;
+
+                            }
+                        }
                     case 7:
                         Console.WriteLine("GoodBye");
                         running = false;
