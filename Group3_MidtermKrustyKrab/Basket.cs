@@ -7,19 +7,70 @@ namespace Group3_MidtermKrustyKrab
     class Basket
     {
 
-        double salesTax = .06;
-        public Product Item { get; set; }
-        public string ProductName { get; set; }
-        public int Quantity { get; set; }
-       
-        public Basket ()
+        public List<Product> MyBasket { get; set; }
+
+        public Basket()
         {
-           MyBasket = new List<Product>();
+            MyBasket = new List<Product>();
         }
 
-        public void UpdateQuantity(int num)
+
+        public void PrintCartItems()
         {
-            Quantity = num;
+            if (MyBasket.Count < 1)
+            {
+                Console.WriteLine("You don't have anything in your Cart!");
+            }
+            else
+            {
+                int i = 1;
+                foreach (Product item in MyBasket)
+                {
+                    Console.WriteLine($"{i} {item.ProductName}");
+                    Console.WriteLine($"Quantity:{item.Quantity}");
+                    Console.WriteLine($"Subtotal: {item.Quantity * item.Price}");
+                    i++;
+                }
+            }
+        }
+        public int SelectCartItem()
+        {
+            while (true)
+            {
+                PrintCartItems();
+
+                Console.WriteLine("Which item would you like to change?");
+                int index;
+                bool select = int.TryParse(Console.ReadLine(), out index);
+                index = index - 1;
+                if (select)
+                {
+                    if (index >= MyBasket.Count || index <= 0)
+                    {
+                        Console.WriteLine("Invalid Selection");
+                        continue;
+                    }
+                    for (int i = index; i < MyBasket.Count; i++)
+                    {
+                        MyBasket[index].PrintItemDetails();
+                        return index;
+                    }
+
+
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Item Selection, Try again. ");
+                    continue;
+                }
+            }
+        }
+        public void UpdateQuantity()
+        {
+            int index = SelectCartItem();
+            Console.WriteLine($"How many {MyBasket[index].ProductName} would you like?");
+
+            MyBasket[index].Quantity = num;
         }
         public double TotalItem()
         {
@@ -35,18 +86,16 @@ namespace Group3_MidtermKrustyKrab
             return x.ToString("C2");
         }
 
-        public override string ToString()
-        {
-            string output = $"{ProductName,-20}{Quantity,-5}{TotalFormatedItem(),-5}";
-            return output;
-        }
+        //public override string ToString()
+        //{
+        //    string output = $"{ProductName,-20}{Quantity,-5}{TotalFormatedItem(),-5}";
+        //    return output;
+        //}
 
-        public void AddItem(Product selectedProduct)
+        public void AddItem(Product selectedProduct, int quant)
         {
-            Console.WriteLine("Would you like to add this product to your bag?");
-            Console.WriteLine("How Many?");
-            int i = int.Parse(Console.ReadLine());
-            MyBasket.Add(new Product(selectedProduct.ProductName, selectedProduct.FoodType, selectedProduct.Description, selectedProduct.Price, i));
+            selectedProduct.Quantity = quant;
+            MyBasket.Add(selectedProduct);
         }
 
     }
