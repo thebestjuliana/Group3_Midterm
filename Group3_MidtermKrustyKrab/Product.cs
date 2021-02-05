@@ -20,9 +20,9 @@ namespace Group3_MidtermKrustyKrab
         public double Price { get; set; }
         public int Quantity { get; set; }
 
-        
 
-        public Product(string ProductName, ProductCategory FoodType, string Description, double Price,int Quantity)
+
+        public Product(string ProductName, ProductCategory FoodType, string Description, double Price, int Quantity)
         {
 
             this.ProductName = ProductName;
@@ -33,15 +33,21 @@ namespace Group3_MidtermKrustyKrab
 
         }
 
-        
+
 
 
         public void PrintItemDetails()
         {
-            string a = string.Format("{0:C}", Convert.ToInt32(Price));
+            string formatedPrice = string.Format("{0:C}", Convert.ToInt32(Price));
             Console.WriteLine($"{ProductName}");
             Console.WriteLine($"Description: {Description}");
-            Console.WriteLine($"{a}");
+            Console.WriteLine($"{formatedPrice}");
+        }
+        public void PrintCartItemDetails(Product item)
+        {
+            Console.WriteLine($"{item.ProductName}");
+            Console.WriteLine($"Quantity:{item.Quantity}");
+            Console.WriteLine($"Subtotal: {item.Quantity * item.Price}");
         }
         public double PrintTotalForItem()
         {
