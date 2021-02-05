@@ -69,7 +69,7 @@ namespace Group3_MidtermKrustyKrab
         {
             int index = SelectCartItem();
             Console.WriteLine($"How many {MyBasket[index].ProductName} would you like?");
-
+            int num = int.Parse(Console.ReadLine());
             MyBasket[index].Quantity = num;
         }
         public double TotalItem()
@@ -86,16 +86,33 @@ namespace Group3_MidtermKrustyKrab
             return x.ToString("C2");
         }
 
-        //public override string ToString()
-        //{
-        //    string output = $"{ProductName,-20}{Quantity,-5}{TotalFormatedItem(),-5}";
-        //    return output;
-        //}
 
         public void AddItem(Product selectedProduct, int quant)
         {
-            selectedProduct.Quantity = quant;
-            MyBasket.Add(selectedProduct);
+            int count = 0;
+
+            if (MyBasket.Count > 0)
+            {
+                foreach (Product item in MyBasket)
+
+                {
+                    if (item.ProductName == selectedProduct.ProductName)
+                    {
+                        count++;
+                    }
+                }
+            }
+            if (count > 0)
+            {
+                Console.WriteLine("That product is already in your cart. " +
+                    "If you would like more, please edit the quantity of this item in your basket.");
+
+            }
+            else
+            {
+                selectedProduct.Quantity = quant;
+                MyBasket.Add(selectedProduct);
+            }
         }
 
     }
