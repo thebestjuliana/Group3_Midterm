@@ -89,20 +89,19 @@ namespace Group3_MidtermKrustyKrab
             double runningTotal = 0;
             foreach (Product item in MyBasket)
             {
-                Console.WriteLine($"{i} {item.ProductName}");
-                Console.WriteLine($"Quantity:{item.Quantity}");
+                Console.WriteLine($"\t{i} {item.ProductName}");
+                Console.WriteLine($"\tQuantity:{item.Quantity}");
                 double itemSubTotal = item.Quantity * item.Price;
-                Console.WriteLine("------------------------------------------");
-                Console.WriteLine($"Subtotal: {FormatNumber(itemSubTotal)}");
+                Console.WriteLine($"\tSubtotal: {FormatNumber(itemSubTotal)}");
                 runningTotal =+ itemSubTotal;
                 i++;
             }
             double taxReturn = runningTotal * 0.06;
             double grandTotal = runningTotal * tax;
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine($"Tax: {FormatNumber(taxReturn)}");
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine($"Grand Total: {FormatNumber(grandTotal)}");
+            Console.WriteLine("________________________________");
+            Console.WriteLine($"\tTax: {FormatNumber(taxReturn)}");
+            Console.WriteLine("________________________________");
+            Console.WriteLine($"\tGrand Total: {FormatNumber(grandTotal)}");
             return grandTotal;
         }
 

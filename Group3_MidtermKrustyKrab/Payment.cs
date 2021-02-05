@@ -39,28 +39,29 @@ namespace Group3_MidtermKrustyKrab
 
         public string CreditCheckOut()
         {
+            Console.WriteLine("Please enter your credit card number:  ");
             string creditNum = Console.ReadLine();
 
             while (true)
             {
 
 
-                if (Regex.IsMatch(creditNum, @"^(?: 4[0 - 9]{ 12} (?:[0 - 9]{ 3})? )| (?: 5[1 - 5][0 - 9]{ 2}               
-                | 222[1 - 9] | 22[3 - 9][0 - 9] | 2[3 - 6][0 - 9]{ 2}| 27[01][0 - 9] | 2720)[0 - 9]{ 12}| 3[47][0 - 9]{ 13}
-                | 3(?:0[0 - 5] |[68][0 - 9])[0 - 9]{ 11}| 6(?:011 | 5[0 - 9]{ 2})[0 - 9]{ 12}| (?: 2131 | 1800 | 35\d{ 3})\d{ 11}$"))
+                if (Regex.IsMatch(creditNum, @"^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$"))
                 {
-                    Console.Write("Please enter your expiration date:  ");
+                //    (?: 4[0 - 9]{ 12} (?:[0 - 9]{ 3})? )| (?: 5[1 - 5][0 - 9]{ 2}               
+                //| 222[1 - 9] | 22[3 - 9][0 - 9] | 2[3 - 6][0 - 9]{ 2}| 27[01][0 - 9] | 2720)[0 - 9]{ 12}| 3[47][0 - 9]{ 13}
+                //| 3(?:0[0 - 5] |[68][0 - 9])[0 - 9]{ 11}| 6(?:011 | 5[0 - 9]{ 2})[0 - 9]{ 12}| (?: 2131 | 1800 | 35\d{ 3})\d{ 11}$"
+                Console.Write("Please enter your expiration date:  ");
                     string date = Console.ReadLine();
                     while (true)
                     {
                         if (Regex.IsMatch(date, @"(0[1-9]|10|11|12)/20[0-9]{2}$"))//  mm/yyyy
                         {
+                            Console.Write("Please enter the CVV number:  ");
+                            string cvv = Console.ReadLine();
                             while (true)
                             {
-                                Console.Write("Please enter the CVV number:  ");
-                                string cvv = Console.ReadLine();
-
-                                if (Regex.IsMatch(cvv, @"/ ^[0 - 9]{ 3,4}$/"))
+                                if (Regex.IsMatch(cvv, @"^\d{3,4}$"))
                                 {
                                     string lastDigit = creditNum.Substring(creditNum.Length - 4);
 
@@ -72,7 +73,7 @@ namespace Group3_MidtermKrustyKrab
                                 }
                                 else
                                 {
-                                    Console.Write("Please enter a valid CVV number, or "+"quit"+"to exit:  ");
+                                    Console.Write("Please enter a valid CVV number, or "+"quit"+" to exit:  ");
                                     cvv = Console.ReadLine().ToLower();
                                 }
                             }
@@ -83,7 +84,7 @@ namespace Group3_MidtermKrustyKrab
                         }
                         else
                         {
-                            Console.Write("Please enter a valid expiration date, or "+"quit"+"to exit:  ");
+                            Console.Write("Please enter a valid expiration date, or "+"quit"+" to exit:  ");
                             date = Console.ReadLine().ToLower();
                         }
 

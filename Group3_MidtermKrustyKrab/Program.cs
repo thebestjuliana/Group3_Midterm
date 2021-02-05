@@ -75,7 +75,7 @@ namespace Group3_MidtermKrustyKrab
                         //Change quantity
                         break;
                     case 6:
-                        while (true)
+                        while (running == true)
                         {
                             Payment paymentMethod = new Payment();
                             PaymentType type = paymentMethod.WhichType();
@@ -98,6 +98,7 @@ namespace Group3_MidtermKrustyKrab
                                 Console.WriteLine($"You paid with a check and a check number of {checkNum}!");
                                 Console.WriteLine($"Thank you for your payment! Have a great Day!");
                                 running = false;
+                                
                             }
                             else
                             {
@@ -113,6 +114,7 @@ namespace Group3_MidtermKrustyKrab
 
                             }
                         }
+                        break;
                     case 7:
                         Console.WriteLine("GoodBye");
                         running = false;
