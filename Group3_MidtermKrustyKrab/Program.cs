@@ -7,9 +7,6 @@ namespace Group3_MidtermKrustyKrab
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            
-=======
             Inventory a = new Inventory();
             Basket b = new Basket();
             Console.WriteLine("Welcome to the Krusty Krab");
@@ -85,26 +82,9 @@ namespace Group3_MidtermKrustyKrab
                         running = false;
                         //Leave
                         break;
-
-
-
                 }
 
-
-
-
-
-
-
-                //write customer option
-                //
-
-
             }
-
-
->>>>>>> main
-
         }
         public static int ValidCheck(string input, int min, int max)
         {

@@ -32,14 +32,6 @@ namespace Group3_MidtermKrustyKrab
                     i++;
                 }
             }
-<<<<<<< HEAD
-            Console.WriteLine($"\tSubtotal: {subtotal.ToString("C2")}");
-            double tax = subtotal * 0.06;
-            Console.WriteLine($"\tTax: {tax.ToString("C2")}");
-            Console.WriteLine($"\tTotal: {(subtotal+tax).ToString("C2")}");
-
-=======
->>>>>>> main
         }
         public int SelectCartItem()
         {
@@ -80,14 +72,14 @@ namespace Group3_MidtermKrustyKrab
             int num = int.Parse(Console.ReadLine());
             MyBasket[index].Quantity = num;
         }
-        public double TotalItem()
-        {
-            return Quantity * Item.Price * (1 + salesTax);
-        }
-        public string TotalFormatedItem()
-        {
-            return FormatNumber(TotalItem());
-        }
+        //public double TotalItem()
+        //{
+        //    return Quantity * Item.Price * (1 + salesTax);
+        //}
+        //public string TotalFormatedItem()
+        //{
+        //    return FormatNumber(TotalItem());
+        //}
 
         private string FormatNumber(double x)
         {
