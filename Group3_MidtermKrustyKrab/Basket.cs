@@ -11,7 +11,7 @@ namespace Group3_MidtermKrustyKrab
        
         public Basket ()
         {
-           MyBasket = new List<Product>();
+            MyBasket = new List<Product>();
         }
 
         public void DisplayBasket()
@@ -23,10 +23,10 @@ namespace Group3_MidtermKrustyKrab
                 subtotal += item.PrintTotalForItem();
 
             }
-            Console.WriteLine($"Subtotal: {subtotal}");
+            Console.WriteLine($"\tSubtotal: {subtotal.ToString("C2")}");
             double tax = subtotal * 0.06;
-            Console.WriteLine($"Tax: {tax}");
-            Console.WriteLine($"Total: {subtotal+tax}");
+            Console.WriteLine($"\tTax: {tax.ToString("C2")}");
+            Console.WriteLine($"\tTotal: {(subtotal+tax).ToString("C2")}");
 
         }
 
