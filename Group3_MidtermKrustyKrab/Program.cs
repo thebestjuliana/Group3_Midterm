@@ -9,13 +9,22 @@ namespace Group3_MidtermKrustyKrab
         {
             Console.WriteLine("Welcome to the Krusty Krab");
             
-            while(true)
+            //while(true)
             {
 
                 Console.WriteLine("Please see below for a selection of our lovely food to eat");
 
-
-
+                Inventory a = new Inventory();
+                Basket b = new Basket();
+                for (int i = 0; i < 3; i++)
+                {
+                    Product thingToAddToBasket = a.SelectProduct();
+                    
+                    b.AddItem(thingToAddToBasket);
+                }
+               
+                b.DisplayBasket();
+               
                 
                 
                     //write customer option

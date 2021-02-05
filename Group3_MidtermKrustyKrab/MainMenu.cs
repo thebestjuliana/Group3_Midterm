@@ -17,13 +17,13 @@ namespace Group3_MidtermKrustyKrab
 
     }
 
-    public static void PrintOptions(List<string> Options)
-    {
-        int i = 1;
-        foreach (string option in Options)
-        {
-            Console.WriteLine($" {i}. {option}");
-            i++;
-        }
-    }
+    //public static void PrintOptions(List<string> Options)
+    //{
+    //    int i = 1;
+    //    foreach (string option in Options)
+    //    {
+    //        Console.WriteLine($" {i}. {option}");
+    //        i++;
+    //    }
+    //}
 }
