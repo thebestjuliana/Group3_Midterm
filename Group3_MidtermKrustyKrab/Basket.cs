@@ -99,7 +99,7 @@ namespace Group3_MidtermKrustyKrab
                 Console.WriteLine($"\tQuantity:{item.Quantity}");
                 double itemSubTotal = item.Quantity * item.Price;
                 Console.WriteLine($"\tSubtotal: {FormatNumber(itemSubTotal)}");
-                runningTotal =+ itemSubTotal;
+                runningTotal += itemSubTotal;
                 i++;
             }
             double taxReturn = runningTotal * 0.06;
