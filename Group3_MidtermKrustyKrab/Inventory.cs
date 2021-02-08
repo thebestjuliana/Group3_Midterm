@@ -45,7 +45,21 @@ namespace Group3_MidtermKrustyKrab
                 }
             }
         }
-
+        public ProductCategory FoodType(string input)
+        {
+            if (input == "ProductCategory.Sandwich")
+            {
+                return ProductCategory.Sandwich;
+            }
+            else if (input == "ProductCategory.Drink")
+            {
+                return ProductCategory.Drink;
+            }
+            else
+            {
+                return ProductCategory.Dessert;
+            }
+        }
 
     }
 

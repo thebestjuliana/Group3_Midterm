@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Group3_MidtermKrustyKrab
 {
@@ -25,13 +27,98 @@ namespace Group3_MidtermKrustyKrab
                         i++;
                     }
 
-                    int userchoice = ValidCheck(Console.ReadLine(), 1, userMenu.Count);
+                    int userchoice = ValidCheck(Console.ReadLine(), 1, userMenu.Count+1);
 
 
                     if (userchoice == 2)
                     {
                         Console.WriteLine("Thank you! GoodBye!");
                         break;
+                    }
+                    else if (userchoice == 3)
+                    {
+                        while (true)
+                        {
+
+
+                            a.Catalogue = new List<Product>();
+                            string filePath = @".\Menu.txt";
+                            StreamReader reader;
+                            StreamWriter writer;
+
+                            try
+                            {
+                                reader = new StreamReader(filePath);
+                                string fileOutput = reader.ReadToEnd();
+                                string[] existingMenuItems = fileOutput.Trim().Split('/').ToArray();
+
+                                foreach (string item in existingMenuItems)
+                                {
+                                    if (!string.IsNullOrEmpty(item))
+                                    {
+                                        List<String> listOfItems = item.Trim().Split(',').ToList();
+
+                                        {
+                                            string first = listOfItems[0];
+                                            string l = listOfItems[0];
+                                            ProductCategory selection = (ProductCategory)Enum.Parse(typeof(ProductCategory), listOfItems[1]);
+
+                                            a.Catalogue.Add(new Product(listOfItems[0], selection, listOfItems[2], double.Parse(listOfItems[3]), int.Parse(listOfItems[4])));
+
+                                        }
+                                    }
+                                }
+
+                                Console.WriteLine("Existing Products:");
+                                a.PrintFullMenu();
+                                Console.WriteLine("Please Enter a new menu item name");
+                                string productName = Console.ReadLine();
+                                if (!fileOutput.Contains(productName))
+                                {
+                                    Console.WriteLine("Please Enter the food category- \n1) Drink \n2) Sandwich \n3) Dessert");
+                                    string numInput = Console.ReadLine();
+                                    string foodTypeInput = "";
+                                    if (numInput == "1")
+                                    {
+                                        foodTypeInput = "Drink";
+                                    }
+                                    else if (numInput == "2")
+                                    {
+                                        foodTypeInput = "Sandwich";
+                                    }
+                                    else if (numInput == "3")
+                                    {
+                                        foodTypeInput = "Dessert";
+                                    }
+                                    Console.WriteLine($"Please enter a description for {productName}");
+                                    string productDescription = Console.ReadLine();
+                                    Console.WriteLine($"Please enter a price for {productName}");
+                                    double price = double.Parse(Console.ReadLine());
+                                    a.Catalogue.Add(new Product(productName, a.FoodType(numInput), productDescription, price, 0));
+                                    fileOutput += $"{productName},{a.FoodType(foodTypeInput)},{productDescription}, {price}, 0/";
+
+
+                                }
+                                reader.Close();
+                                writer = new StreamWriter(filePath);
+                                writer.Write(fileOutput);
+                                writer.Close();
+
+                                Console.WriteLine("Would you like to add another item to the menu? Y/N");
+                                string answer = Console.ReadLine().ToLower();
+                                if (answer == "y")
+                                {
+                                    continue;
+                                }
+
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                                Console.WriteLine(e.StackTrace);
+                            }
+                            break;
+                        }
                     }
                     Console.WriteLine("Please see below for a selection of our lovely food to eat");
 
