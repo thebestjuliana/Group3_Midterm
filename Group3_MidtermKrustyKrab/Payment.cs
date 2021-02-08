@@ -105,7 +105,7 @@ namespace Group3_MidtermKrustyKrab
         {
             Console.WriteLine("How would you like to pay?");
             Console.Write("Cash, Check or Credit?  ");
-            string input = Verify(Console.ReadLine());
+            string input = Verify(Console.ReadLine().ToLower());
             //string output = Verify(input);
             if(input == "cash")
             {
