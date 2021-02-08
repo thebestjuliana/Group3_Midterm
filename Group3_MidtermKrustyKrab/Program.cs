@@ -7,14 +7,14 @@ namespace Group3_MidtermKrustyKrab
     {
         static void Main(string[] args)
         {
-            Inventory a = new Inventory();
-            Basket b = new Basket();
+            Inventory a = new Inventory();//brings in our entire inventory from the csv through its constructor
+            Basket b = new Basket();//Starts an empty basket the user can fill
             Console.WriteLine("Welcome to the Krusty Krab");
-            bool running = true;
+            bool running = true;//initilize main while loop condition
             while (running == true)
             {
 
-                if (b.MyBasket.Count == 0)
+                if (b.MyBasket.Count == 0)//First menu that only shows when basket is empty
                 {
                     List<string> userMenu = new List<string> { "View Menu", "Leave" };
                     int i = 1;
@@ -57,7 +57,7 @@ namespace Group3_MidtermKrustyKrab
                         Console.WriteLine("Please enter the combo number of the item you would like");
                         int comboNumber = ValidCheck(Console.ReadLine(), 1, a.Catalogue.Count);
                         int quant;
-                        Console.WriteLine($"How many {a.Catalogue[comboNumber - 1].ProductName} would you like?(Please, No more than 50 of any item)");
+                        Console.WriteLine($"How many {a.Catalogue[comboNumber - 1].ProductName} would you like?(Please, No more than 50 of any item)");//Adjusted for menu options
                         quant = ValidCheck(Console.ReadLine(), 1, 50);
 
                         b.AddItem(a.Catalogue[comboNumber-1], quant);
@@ -165,6 +165,13 @@ namespace Group3_MidtermKrustyKrab
 
             }
         }
+        /// <summary>
+        /// Checks an inputed string can be converted to an int and falls between the ranges.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns>returns a valid integer</returns>
         public static int ValidCheck(string input, int min, int max)
         {
             int integer;
@@ -189,6 +196,10 @@ namespace Group3_MidtermKrustyKrab
                 }
             }
         }
+        /// <summary>
+        /// Prints a menu
+        /// </summary>
+        /// <returns>Returns the option that they selected.</returns>
         public static int PrintMenu2ReturnUserSelection()
         {
             List<string> userMenu2 = new List<string>();
@@ -210,6 +221,10 @@ namespace Group3_MidtermKrustyKrab
             return option;
 
         }
+        /// <summary>
+        /// Validates the yes or no on continue questions
+        /// </summary>
+        /// <returns>Returns true if they said yes, returns false if they said no.</returns>
         public static bool YesNoValidation()
         {
             while (true)

@@ -16,12 +16,16 @@ namespace Group3_MidtermKrustyKrab
         public double TotalCost { get; set; }
         public PaymentType PaymentType { get; set; }
     
-
-        public Payment()
+         public Payment()
         {
 
         }
-
+        /// <summary>
+        /// This takes in the total cost of the cart and allows the user to check out with cash. 
+        /// It has a valid check within it to not allow change to be given in $100 bills
+        /// </summary>
+        /// <param name="TotalCost"></param>
+        /// <returns>Returns a double, change, which is displayed in the checkout(case#6)</returns>
         public double CashCheckOut(double TotalCost)
         {
             Console.Write("How much cash you got?  ");
@@ -29,14 +33,21 @@ namespace Group3_MidtermKrustyKrab
             double change = tender - TotalCost;
             return change;
         }
-
+        /// <summary>
+        /// Takes the total cost of the cart and asks for the check number to pay with.
+        /// </summary>
+        /// <returns>Returns that check number for use on the user reciept</returns>
         public int CheckCheckOut()
         {
             Console.WriteLine("Please enter your check number. XXXX");
             int output = CheckCheck(Console.ReadLine(),1000, 9999);
             return output;
         }
-
+        /// <summary>
+        /// Takes the total cost of the cart and asks for the credit card number, expiration date, and CVV.
+        /// All of these are checked by regex and will ask until valid numbers are inputed.
+        /// </summary>
+        /// <returns>Returns the last 4 digit of the credit card number as a string</returns>
         public string CreditCheckOut()
         {
             Console.WriteLine("Please enter your credit card number:  ");
@@ -100,7 +111,10 @@ namespace Group3_MidtermKrustyKrab
             }
         }
 
-
+        /// <summary>
+        /// Determines which type of payment method the user chooses to use. This is checked with Verify().
+        /// </summary>
+        /// <returns></returns>
         public PaymentType WhichType()
         {
             Console.WriteLine("How would you like to pay?");
@@ -142,7 +156,15 @@ namespace Group3_MidtermKrustyKrab
             }
         }
 
-
+        /// <summary>
+        /// Checks that the user entered a valid amount for the cash payment.
+        /// Checks that the amount covers the cost, and is not $100 over the cost amount.
+        /// Also checks they did not enter words instead of a double.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns>Returns the amount the user tendered as a cash payment</returns>
         public double ValidCheck(string input, double min, double max)
         {
             double money;
@@ -178,6 +200,13 @@ namespace Group3_MidtermKrustyKrab
                 }
             }
         }
+        /// <summary>
+        /// Validates the user inputs for a 4 digit check number
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns>Returns a valid 4 digit check number</returns>
         public int CheckCheck(string input, int min, int max)
         {
             int money;

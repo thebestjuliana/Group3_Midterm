@@ -14,7 +14,9 @@ namespace Group3_MidtermKrustyKrab
             MyBasket = new List<Product>();
         }
 
-
+        /// <summary>
+        /// Prints all products in the basket
+        /// </summary>
         public void PrintCartItems()
         {
             if (MyBasket.Count < 1)
@@ -33,6 +35,11 @@ namespace Group3_MidtermKrustyKrab
                 }
             }
         }
+        /// <summary>
+        /// Asks user which product they would like to interact with.
+        /// Checks that it is a number on the list and isnt a string.
+        /// </summary>
+        /// <returns>Returns the index of the basket product</returns>
         public int SelectCartItem()
         {
             while (true)
@@ -66,6 +73,9 @@ namespace Group3_MidtermKrustyKrab
                 }
             }
         }
+        /// <summary>
+        /// Asks user what they would like to change the quantity to on a specific product in the basket
+        /// </summary>
         public void UpdateQuantity()
         {
             int index = SelectCartItem();
@@ -73,7 +83,10 @@ namespace Group3_MidtermKrustyKrab
             int num = ValidCheck(Console.ReadLine(),1 , 50);
             MyBasket[index].Quantity = num;
         }
-
+        /// <summary>
+        /// Prints the product description, price per, quanitity, the subtotal, tax, and Grandtotal for the basket
+        /// </summary>
+        /// <returns>Returns the grand total to be used for change</returns>
         public double Reciept()
         {
             int i = 1;
@@ -103,7 +116,12 @@ namespace Group3_MidtermKrustyKrab
             return x.ToString("C2");
         }
 
-
+        /// <summary>
+        /// Takes in a specific product and an integer that will set the amount of the desired product.
+        /// Adds the product to the basket
+        /// </summary>
+        /// <param name="selectedProduct"></param>
+        /// <param name="quant"></param>
         public void AddItem(Product selectedProduct, int quant)
         {
             int count = 0;
@@ -131,6 +149,13 @@ namespace Group3_MidtermKrustyKrab
                 MyBasket.Add(selectedProduct);
             }
         }
+        /// <summary>
+        /// Checks an inputed string can be converted to an int and falls between the ranges.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns>returns a valid integer</returns>
         public int ValidCheck(string input, int min, int max)
         {
             int integer;

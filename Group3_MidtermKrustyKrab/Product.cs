@@ -21,12 +21,21 @@ namespace Group3_MidtermKrustyKrab
         public string Description { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-
+        /// <summary>
+        /// Used in the .csv file to construct this from lines read from the external file.
+        /// </summary>
         public Product()
         {
 
         }
-
+        /// <summary>
+        /// A basic constructor if the items are added in the code vs grabbing from a .csv file.
+        /// </summary>
+        /// <param name="ProductName"></param>
+        /// <param name="FoodType"></param>
+        /// <param name="Description"></param>
+        /// <param name="Price"></param>
+        /// <param name="Quantity"></param>
         public Product(string ProductName, ProductCategory FoodType, string Description, double Price, int Quantity)
         {
 
@@ -37,7 +46,11 @@ namespace Group3_MidtermKrustyKrab
             this.Quantity = Quantity;
 
         }
-
+        /// <summary>
+        /// Converts every column in the .csv file into the appropriate Product parameter and then sends it back to the inventory to be cataloged
+        /// </summary>
+        /// <param name="csvLine"></param>
+        /// <returns>Returns a full itme with the properties defined in Product class</returns>
         public static Product FromCsv(string csvLine)
         {
             string[] values = csvLine.Split(',');
@@ -50,7 +63,9 @@ namespace Group3_MidtermKrustyKrab
             return csvProducts;
         }
 
-
+        /// <summary>
+        /// Prints the items with their descriptions used in the main display
+        /// </summary>
         public void PrintItemDetails()
         {
             string formatedPrice = string.Format("{0:C}", Convert.ToInt32(Price));
@@ -59,18 +74,21 @@ namespace Group3_MidtermKrustyKrab
             Console.WriteLine($"{formatedPrice}");
             Console.WriteLine("_____________________________________");
         }
-        public void PrintCartItemDetails(Product item)
-        {
-            Console.WriteLine($"{item.ProductName}");
-            Console.WriteLine($"Quantity:{item.Quantity}");
-            Console.WriteLine($"Subtotal: {item.Quantity * item.Price}");
-        }
-        public double PrintTotalForItem()
-        {
-            double total = Price * Quantity;
-            Console.WriteLine($"{ProductName}: ${total}");
-            return total;
-        }
+
+        //Not used, was an intial concept idea and then later transitioned to Receiept()
+
+        //public void PrintCartItemDetails(Product item)
+        //{
+        //    Console.WriteLine($"{item.ProductName}");
+        //    Console.WriteLine($"Quantity:{item.Quantity}");
+        //    Console.WriteLine($"Subtotal: {item.Quantity * item.Price}");
+        //}
+        //public double PrintTotalForItem()
+        //{
+        //    double total = Price * Quantity;
+        //    Console.WriteLine($"{ProductName}: ${total}");
+        //    return total;
+        //}
 
 
     }
