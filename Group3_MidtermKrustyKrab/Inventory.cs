@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Group3_MidtermKrustyKrab
@@ -10,16 +12,10 @@ namespace Group3_MidtermKrustyKrab
 
         public Inventory()
         {
-
-            Catalogue = new List<Product>();
-
-            Product a = new Product("Italian Sub", ProductCategory.Sandwich, "Meatballs on a hoagie", 7.00, 0);
-            Product b = new Product("Chocolate Chip Cookie", ProductCategory.Dessert, "Made with love from your granny", 5.00, 0);
-
-            Catalogue.Add(new Product("Sugar Cookie", ProductCategory.Dessert, "Made with sugar", 5.00, 0));
-
-            Catalogue.Add(a);
-            Catalogue.Add(b);
+            Catalogue = File.ReadAllLines(@"../../Products.csv")
+                .Skip(1)
+                .Select(v => Product.FromCsv(v))
+                .ToList();
         }
 
         public void PrintFullMenu()
@@ -27,7 +23,7 @@ namespace Group3_MidtermKrustyKrab
             int i = 1;
             foreach (Product item in Catalogue)
             {
-                Console.WriteLine(i);
+                Console.WriteLine($"[{i}]");
                 item.PrintItemDetails();
                 Console.WriteLine();
                 i++;
@@ -45,8 +41,6 @@ namespace Group3_MidtermKrustyKrab
                 }
             }
         }
-
-
     }
 
 }

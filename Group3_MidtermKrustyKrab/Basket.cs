@@ -26,7 +26,7 @@ namespace Group3_MidtermKrustyKrab
                 int i = 1;
                 foreach (Product item in MyBasket)
                 {
-                    Console.WriteLine($"{i} {item.ProductName}");
+                    Console.WriteLine($"\n{i}) {item.ProductName}");
                     Console.WriteLine($"Quantity:{item.Quantity}");
                     Console.WriteLine($"Subtotal: {FormatNumber(item.Quantity * item.Price)}");
                     i++;
@@ -73,14 +73,6 @@ namespace Group3_MidtermKrustyKrab
             int num = ValidCheck(Console.ReadLine(),1 , 50);
             MyBasket[index].Quantity = num;
         }
-        //public double TotalItem()
-        //{
-        //    return Quantity * Item.Price * (1 + salesTax);
-        //}
-        //public string TotalFormatedItem()
-        //{
-        //    return FormatNumber(TotalItem());
-        //}
 
         public double Reciept()
         {
@@ -89,7 +81,8 @@ namespace Group3_MidtermKrustyKrab
             double runningTotal = 0;
             foreach (Product item in MyBasket)
             {
-                Console.WriteLine($"\t{i} {item.ProductName}");
+                Console.WriteLine($"\tCart #{i}: {item.ProductName}");
+                Console.WriteLine($"\tPrice (ea): {FormatNumber(item.Price)}");
                 Console.WriteLine($"\tQuantity:{item.Quantity}");
                 double itemSubTotal = item.Quantity * item.Price;
                 Console.WriteLine($"\tSubtotal: {FormatNumber(itemSubTotal)}");

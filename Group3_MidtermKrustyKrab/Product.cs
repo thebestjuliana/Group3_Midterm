@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+
 
 namespace Group3_MidtermKrustyKrab
 {
@@ -20,7 +22,10 @@ namespace Group3_MidtermKrustyKrab
         public double Price { get; set; }
         public int Quantity { get; set; }
 
+        public Product()
+        {
 
+        }
 
         public Product(string ProductName, ProductCategory FoodType, string Description, double Price, int Quantity)
         {
@@ -33,7 +38,17 @@ namespace Group3_MidtermKrustyKrab
 
         }
 
-
+        public static Product FromCsv(string csvLine)
+        {
+            string[] values = csvLine.Split(',');
+            Product csvProducts = new Product();
+            csvProducts.ProductName = Convert.ToString(values[0]);
+            csvProducts.FoodType = (ProductCategory)Enum.Parse(typeof(ProductCategory), Convert.ToString(values[1]));
+            csvProducts.Description = Convert.ToString(values[2]);
+            csvProducts.Price = Convert.ToDouble(values[3]);
+            csvProducts.Quantity = Convert.ToInt32(values[4]);
+            return csvProducts;
+        }
 
 
         public void PrintItemDetails()
@@ -42,6 +57,7 @@ namespace Group3_MidtermKrustyKrab
             Console.WriteLine($"{ProductName}");
             Console.WriteLine($"Description: {Description}");
             Console.WriteLine($"{formatedPrice}");
+            Console.WriteLine("_____________________________________");
         }
         public void PrintCartItemDetails(Product item)
         {

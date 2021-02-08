@@ -105,8 +105,7 @@ namespace Group3_MidtermKrustyKrab
         {
             Console.WriteLine("How would you like to pay?");
             Console.Write("Cash, Check or Credit?  ");
-            string input = Verify(Console.ReadLine());
-            //string output = Verify(input);
+            string input = Verify(Console.ReadLine().ToLower().Trim());
             if(input == "cash")
             {
                 return PaymentType.Cash;
@@ -128,9 +127,7 @@ namespace Group3_MidtermKrustyKrab
         /// <returns>Returns a string input that is "Cash", "Check" or "Credit".</returns>
         public string Verify(string input)
         {
-
-            input.ToLower().Trim();
-
+            
             while (true)
             {
                 if(input == "cash" || input == "check" || input == "credit")

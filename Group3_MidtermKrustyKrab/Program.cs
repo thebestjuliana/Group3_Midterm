@@ -33,14 +33,15 @@ namespace Group3_MidtermKrustyKrab
                         Console.WriteLine("Thank you! GoodBye!");
                         break;
                     }
-                    Console.WriteLine("Please see below for a selection of our lovely food to eat");
+
+                    Console.WriteLine("Please see below for a selection of our lovely food to eat\n");
 
 
                     a.PrintFullMenu();
                     Console.WriteLine("Please enter the combo number of the item you would like");
                     int comboNumber = ValidCheck(Console.ReadLine(), 1, a.Catalogue.Count);
                     int quant;
-                    Console.WriteLine("How many would you like?(Please, No more than 50 of any item)");
+                    Console.WriteLine($"How many {a.Catalogue[comboNumber-1].ProductName} would you like?(Please, No more than 50 of any item)");
                     quant = ValidCheck(Console.ReadLine(), 1, 50);
 
                     b.AddItem(a.Catalogue[comboNumber-1], quant);
@@ -56,7 +57,7 @@ namespace Group3_MidtermKrustyKrab
                         Console.WriteLine("Please enter the combo number of the item you would like");
                         int comboNumber = ValidCheck(Console.ReadLine(), 1, a.Catalogue.Count);
                         int quant;
-                        Console.WriteLine("How many would you like?(Please, No more than 50 of any item)");
+                        Console.WriteLine($"How many {a.Catalogue[comboNumber - 1].ProductName} would you like?(Please, No more than 50 of any item)");
                         quant = ValidCheck(Console.ReadLine(), 1, 50);
 
                         b.AddItem(a.Catalogue[comboNumber-1], quant);
@@ -82,7 +83,7 @@ namespace Group3_MidtermKrustyKrab
                         break;
                     case 3:
                         //view my cart
-                        Console.WriteLine("The items in your cart are:");
+                        Console.WriteLine("\nThe items in your cart are:");
                         b.PrintCartItems();
                         Console.WriteLine();
                         break;
@@ -96,14 +97,16 @@ namespace Group3_MidtermKrustyKrab
                             b.MyBasket.Clear();
                             b.MyBasket.TrimExcess();
                         }
-                        
+                        Console.WriteLine("All items have been removed from your cart. Your order has been cancelled!");
                         break;
                     case 5:
                         //Change quantity
                         b.UpdateQuantity();
                         break;
                     case 6:
-                        while (running == true)
+                        //Checkout
+                        bool again = true;
+                        while (again == true)
                         {
                             Payment paymentMethod = new Payment();
                             PaymentType type = paymentMethod.WhichType();
@@ -117,7 +120,9 @@ namespace Group3_MidtermKrustyKrab
                                 Console.WriteLine($"Amount Tendered: {b.FormatNumber(grandTotal + change)}");
                                 Console.WriteLine($"Change: ({b.FormatNumber(change)})");
                                 Console.WriteLine($"Thank you for your payment! Have a great Day!");
-                                running = false;
+                                again = false;
+                                b.MyBasket.Clear();
+                                b.MyBasket.TrimExcess();
                             }
                             else if (type == PaymentType.Check)
                             {
@@ -125,8 +130,9 @@ namespace Group3_MidtermKrustyKrab
                                 double doNotReturn = b.Reciept();
                                 Console.WriteLine($"You paid with a check and a check number of {checkNum}!");
                                 Console.WriteLine($"Thank you for your payment! Have a great Day!");
-                                running = false;
-                                
+                                again = false;
+                                b.MyBasket.Clear();
+                                b.MyBasket.TrimExcess();
                             }
                             else
                             {
@@ -138,7 +144,9 @@ namespace Group3_MidtermKrustyKrab
                                 }
                                 Console.WriteLine($"You paid with a credit card ending in {cc}!");
                                 Console.WriteLine($"Thank you for your payment! Have a great Day!");
-                                running = false;
+                                again = false;
+                                b.MyBasket.Clear();
+                                b.MyBasket.TrimExcess();
 
                             }
                         }
@@ -152,8 +160,7 @@ namespace Group3_MidtermKrustyKrab
                 }
                 if (b.MyBasket.Count == 0)
                 {
-                    Console.WriteLine("All items have been removed from your cart. Your order has been cancelled!");
-                    Console.WriteLine("Returning to the main menu");
+                    Console.WriteLine("\nReturning to the main menu\n");
                 }
 
             }
