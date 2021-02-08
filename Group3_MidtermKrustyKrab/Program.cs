@@ -64,15 +64,43 @@ namespace Group3_MidtermKrustyKrab
                         break;
                     case 2:
                         //Remove product from cart
+                        comboNumber = b.SelectCartItem();
+                        Console.WriteLine($"Are you sure you'd like to remove {b.MyBasket[comboNumber].ProductName} from your cart? (Y/N)");
+                        bool answer = YesNoValidation();
+                        if(answer == true)
+                        {
+                            Console.WriteLine($" {b.MyBasket[comboNumber].ProductName} has been removed from your cart!\n");
+                            b.MyBasket.RemoveAt(comboNumber);
+                            Console.WriteLine("Returning to the main menu!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Ok We'll keep {b.MyBasket[comboNumber].ProductName} in your cart. \nReturning to the main menu.");
+
+                        }
+
                         break;
                     case 3:
                         //view my cart
+                        Console.WriteLine("The items in your cart are:");
+                        b.PrintCartItems();
+                        Console.WriteLine();
                         break;
                     case 4:
                         //Empty my cart
+                        Console.WriteLine($"Are you sure you'd like to  empty your cart? (Y/N)");
+                        
+                        answer = YesNoValidation();
+                        if(answer == true)
+                        {
+                            b.MyBasket.Clear();
+                            b.MyBasket.TrimExcess();
+                        }
+                        
                         break;
                     case 5:
                         //Change quantity
+                        b.UpdateQuantity();
                         break;
                     case 6:
                         while (running == true)
@@ -120,6 +148,12 @@ namespace Group3_MidtermKrustyKrab
                         running = false;
                         //Leave
                         break;
+
+                }
+                if (b.MyBasket.Count == 0)
+                {
+                    Console.WriteLine("All items have been removed from your cart. Your order has been cancelled!");
+                    Console.WriteLine("Returning to the main menu");
                 }
 
             }
@@ -169,6 +203,29 @@ namespace Group3_MidtermKrustyKrab
             return option;
 
         }
+        public static bool YesNoValidation()
+        {
+            while (true)
+            {
+                string answer = Console.ReadLine();
+
+                if (answer.ToLower() == "y")
+                {
+                    return true;
+                }
+                else if (answer.ToLower() == "n")
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid response. Y/N. Try again!");
+                    continue;
+                }
+            }
+
+        }
+
     }
 }
 
