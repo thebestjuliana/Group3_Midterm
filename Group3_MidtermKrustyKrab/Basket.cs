@@ -28,7 +28,7 @@ namespace Group3_MidtermKrustyKrab
                 {
                     Console.WriteLine($"{i} {item.ProductName}");
                     Console.WriteLine($"Quantity:{item.Quantity}");
-                    Console.WriteLine($"Subtotal: {item.Quantity * item.Price}");
+                    Console.WriteLine($"Subtotal: {FormatNumber(item.Quantity * item.Price)}");
                     i++;
                 }
             }
@@ -46,7 +46,7 @@ namespace Group3_MidtermKrustyKrab
                 if (select)
                 {
 
-                    if (index >= MyBasket.Count || index <= 0)
+                    if (index >= MyBasket.Count || index < 0)
                     {
                         Console.WriteLine("Invalid Selection");
                         continue;
@@ -70,7 +70,7 @@ namespace Group3_MidtermKrustyKrab
         {
             int index = SelectCartItem();
             Console.WriteLine($"How many {MyBasket[index].ProductName} would you like?");
-            int num = int.Parse(Console.ReadLine());
+            int num = ValidCheck(Console.ReadLine(),1 , 50);
             MyBasket[index].Quantity = num;
         }
         //public double TotalItem()
@@ -138,6 +138,30 @@ namespace Group3_MidtermKrustyKrab
                 MyBasket.Add(selectedProduct);
             }
         }
-
+        public int ValidCheck(string input, int min, int max)
+        {
+            int integer;
+            while (true)
+            {
+                if (Int32.TryParse(input, out integer))//Checks if it can be converted to a number
+                {
+                    if (integer >= min && integer <= max)//Checks that it is within the given range
+                    {
+                        return integer;// returns a valid integer
+                    }
+                    else
+                    {
+                        Console.Write("\nPlease enter reasonable number! ");//requires them to keep trying until they give a valid entry
+                        input = Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.Write("\nPlease enter a number.  ");//requires them to keep trying until they give a valid entry
+                    input = Console.ReadLine();
+                }
+            }
+        }
     }
+
 }
