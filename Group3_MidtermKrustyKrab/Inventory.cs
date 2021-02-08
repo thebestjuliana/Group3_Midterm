@@ -12,10 +12,17 @@ namespace Group3_MidtermKrustyKrab
 
         public Inventory()
         {
-            Catalogue = File.ReadAllLines(@"../../Products.csv")
-                .Skip(1)
-                .Select(v => Product.FromCsv(v))
-                .ToList();
+            try
+            {
+                Catalogue = File.ReadAllLines(@"../../Products.csv")
+                    .Skip(1)
+                    .Select(v => Product.FromCsv(v))
+                    .ToList();
+            } catch(Exception e)
+            {
+                Console.WriteLine("An error occured. Please get a Krusty Krab representative for help.");
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void PrintFullMenu()
