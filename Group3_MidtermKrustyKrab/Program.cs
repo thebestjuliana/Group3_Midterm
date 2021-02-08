@@ -16,10 +16,11 @@ namespace Group3_MidtermKrustyKrab
             string filePath = @".\Menu.txt";
             StreamReader reader;
             StreamWriter writer;
+            reader = new StreamReader(filePath);
+            string fileOutput = reader.ReadToEnd();
             try
             {
-                reader = new StreamReader(filePath);
-                string fileOutput = reader.ReadToEnd();
+                
                 string[] existingMenuItems = fileOutput.Trim().Split('/').ToArray();
 
                 foreach (string item in existingMenuItems)
@@ -76,32 +77,9 @@ namespace Group3_MidtermKrustyKrab
                         while (true)
                         {
 
-
-                           
-
                             try
                             {
-                                reader = new StreamReader(filePath);
-                                string fileOutput = reader.ReadToEnd();
-                                string[] existingMenuItems = fileOutput.Trim().Split('/').ToArray();
-
-                                foreach (string item in existingMenuItems)
-                                {
-                                    if (!string.IsNullOrEmpty(item))
-                                    {
-                                        List<String> listOfItems = item.Trim().Split(',').ToList();
-
-                                        {
-                                            string first = listOfItems[0];
-                                            string l = listOfItems[0];
-                                            ProductCategory selection = (ProductCategory)Enum.Parse(typeof(ProductCategory), listOfItems[1]);
-
-                                            a.Catalogue.Add(new Product(listOfItems[0], selection, listOfItems[2], double.Parse(listOfItems[3]), int.Parse(listOfItems[4])));
-
-                                        }
-                                    }
-                                }
-
+                               
                                 Console.WriteLine("Existing Products:");
                                 a.PrintFullMenu();
                                 Console.WriteLine("Please Enter a new menu item name");
@@ -152,6 +130,7 @@ namespace Group3_MidtermKrustyKrab
                             }
                             break;
                         }
+                        continue;
                     }
                     Console.WriteLine("Please see below for a selection of our lovely food to eat");
 
