@@ -9,8 +9,44 @@ namespace Group3_MidtermKrustyKrab
     {
         static void Main(string[] args)
         {
+            
             Inventory a = new Inventory();
             Basket b = new Basket();
+            a.Catalogue = new List<Product>();
+            string filePath = @".\Menu.txt";
+            StreamReader reader;
+            StreamWriter writer;
+            try
+            {
+                reader = new StreamReader(filePath);
+                string fileOutput = reader.ReadToEnd();
+                string[] existingMenuItems = fileOutput.Trim().Split('/').ToArray();
+
+                foreach (string item in existingMenuItems)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        List<String> listOfItems = item.Trim().Split(',').ToList();
+
+                        {
+                            string first = listOfItems[0];
+                            string l = listOfItems[0];
+                            ProductCategory selection = (ProductCategory)Enum.Parse(typeof(ProductCategory), listOfItems[1]);
+
+                            a.Catalogue.Add(new Product(listOfItems[0], selection, listOfItems[2], double.Parse(listOfItems[3]), int.Parse(listOfItems[4])));
+
+                        }
+                    }
+                }
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+            }
+
             Console.WriteLine("Welcome to the Krusty Krab");
             bool running = true;
             while (running == true)
@@ -41,10 +77,7 @@ namespace Group3_MidtermKrustyKrab
                         {
 
 
-                            a.Catalogue = new List<Product>();
-                            string filePath = @".\Menu.txt";
-                            StreamReader reader;
-                            StreamWriter writer;
+                           
 
                             try
                             {
